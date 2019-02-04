@@ -12,5 +12,10 @@ then run commands:
 
 ## Running  
 
+mode options:  
+`put_song`  
+`put_album`  
+`put_artist`  
+
 Example:  
 `ruby aws-cli.rb put_song artist="Miley Cyrus" album="Bangers"  name="Younger Now"`
