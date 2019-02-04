@@ -1,9 +1,15 @@
 # aws-cli
 
-## installation
+## Installation
 
-* install ruby
+* Install ruby
+* Pull Repo
 
-then run command:
+then run commands:  
 * gem install bundler
 * bundle install
+
+
+## Running  
+
+'ruby aws-cli.rb put_song artist="Miley Cyrus" album="Bangers"  name="Younger Now"'
