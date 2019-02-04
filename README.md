@@ -18,8 +18,8 @@ mode options:
 `put_artist`  
 
 Examples:  
-`ruby aws-cli.rb put_song artist="Miley Cyrus" album="Bangers"  name="Younger Now" location="path/to/song"`
+`ruby aws_cli.rb put_song artist="Miley Cyrus" album="Bangers"  name="Younger Now" location="path/to/song"`
 
-`ruby aws-cli.rb put_album artist="Miley Cyrus" album="Bangers" location="path/to/album"`
+`ruby aws_cli.rb put_album artist="Miley Cyrus" album="Bangers" location="path/to/album"`
 
-`ruby aws-cli.rb put_artist artist="Miley Cyrus" location="path/to/artist"`
+`ruby aws_cli.rb put_artist artist="Miley Cyrus" location="path/to/artist"`
