@@ -12,4 +12,5 @@ then run commands:
 
 ## Running  
 
+Example:  
 `ruby aws-cli.rb put_song artist="Miley Cyrus" album="Bangers"  name="Younger Now"`
