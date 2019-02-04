@@ -1,11 +1,10 @@
 require 'aws-sdk-s3'
 
 mode = ARGV[0]
-puts mode
+
 args= {}
 ARGV.map{|argument| args[argument.split('=')[0].to_sym] = argument.split('=')[1]}
 
-puts args.compact
 file_path = args[:location]
 album_name = args[:album]
 artist = args[:artist]
@@ -19,11 +18,6 @@ role_credentials = Aws::AssumeRoleCredentials.new(
   )
 
 s3 = Aws::S3::Client.new(credentials: role_credentials)
-# resp = s3.list_buckets
-
-# resp = s3.list_objects({
-#   bucket: "do-not-kick", 
-# })
 case mode 
 when "put_song"
   file = File.open(file_path, 'rb')
@@ -33,10 +27,11 @@ when "put_song"
     key: path, 
   }) 
   file.close
+  puts "uploaded #{song_name}" 
 when "put_album"
   Dir.foreach(file_path) do |song|
+    next if song.match(/^\./)
     begin
-      puts song
       file = File.open("#{file_path}/#{song}", 'rb')
       resp = s3.put_object({
         body: file, 
@@ -44,16 +39,19 @@ when "put_album"
         key: "#{path}/#{song}", 
       }) 
       file.close
+      puts "uploaded #{song}" 
     rescue
       next
     end
   end
 when "put_artist"
   Dir.foreach(file_path) do |album|
+    next if album.match(/^\./)
+    puts "uploading #{album}"
     begin 
       Dir.foreach("#{file_path}/#{album}") do |song|
+        next if album.match(/^\./) || album.match(".DS_Store")
         begin
-          puts song
           file = File.open("#{file_path}/#{album}/#{song}", 'rb')
           resp = s3.put_object({
             body: file, 
@@ -61,6 +59,7 @@ when "put_artist"
             key: "#{path}/#{song}", 
           }) 
           file.close
+          puts "uploaded #{song}" 
         rescue
           next
         end
