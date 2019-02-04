@@ -2,7 +2,7 @@
 
 ## installation
 
-install ruby
-gem install bundler
-then run command:
-bundle install
+* install ruby
+* then run command:
+* gem install bundler
+* bundle install
